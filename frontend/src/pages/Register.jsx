@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -30,7 +32,9 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const response = await axios.post('/api/auth/register', { name, email, password });
+
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const response = await axios.post('https://ai-startup-idea-validation-ncko.vercel.app/api/auth/register', { name, email, password });
       login(response.data, response.data.token);
       navigate('/dashboard');
     } catch (err) {
